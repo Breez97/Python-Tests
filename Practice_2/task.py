@@ -14,7 +14,7 @@ class Ingredient:
 	@title.setter
 	def title(self, value):
 		if not isinstance(value, str):
-			raise ValueError("Title must be string")
+			raise ValueError("Название должно быть строковым значением")
 		self._title = value
 	
 	@property
@@ -24,7 +24,7 @@ class Ingredient:
 	@raw_weight.setter
 	def raw_weight(self, value):
 		if not isinstance(value, (int, float)) or value <= 0:
-			raise ValueError("Raw weight must be a positive number")
+			raise ValueError("Сырой вес должен быть положительным числом")
 		self._raw_weight = value
 	
 	@property
@@ -34,7 +34,7 @@ class Ingredient:
 	@weight.setter
 	def weight(self, value):
 		if not isinstance(value, (int, float)) or value <= 0:
-			raise ValueError("Weight must be a positive number")
+			raise ValueError("Вес должен быть положительным числом")
 		self._weight = value
 	
 	@property
@@ -44,11 +44,11 @@ class Ingredient:
 	@cost.setter
 	def cost(self, value):
 		if not isinstance(value, (int, float)) or value <= 0:
-			raise ValueError("Cost must be a positive number")
+			raise ValueError("Цена должна быть положительным числом")
 		self._cost = value;
 	
 	def __str__(self):
-		return f'  {self.title}:\n    Raw Weight: {self.raw_weight}\n    Weight: {self.weight}\n    Cost: {self.cost}'
+		return f'  {self.title}:\n    Сырой вес: {self.raw_weight}\n    Вес: {self.weight}\n    Цена: {self.cost}'
 
 
 class Receipt:
@@ -65,7 +65,7 @@ class Receipt:
 	@title.setter
 	def title(self, value):
 		if not isinstance(value, str):
-			raise ValueError("Title must be string")
+			raise ValueError("Название должно быть строковым значением")
 		self._title = value;
 	
 	def calc_raw_weight(self, portions=1):
@@ -88,25 +88,21 @@ class Receipt:
 	
 	def __str__(self):
 		ingredients_str = "\n".join(str(ingredient) for ingredient in self.ingredients)
-		return f'Receipt: {self.title}\nIngredients:\n{ingredients_str}'
+		return f'Блюдо: {self.title}\nИгредиенты:\n{ingredients_str}'
 
 
 if __name__ == '__main__':
 	receipt_from_api = {
-        "title": "Яичница с беконом и помидорами.",
-        "ingredients_list": [
-            ('Яйцо', 80, 70, 20),
-            ('Бекон', 200, 100, 300),
-            ('Помидор', 100, 80, 200),
-        ],
-    }
+		"title": "Штрудель",
+		"ingredients_list": [
+			('Мука', 150, 140, 30),
+			('Сахар', 50, 50, 15),
+			('Яблоки', 300, 280, 120),
+			('Масло сливочное', 100, 90, 80),
+			('Корица', 5, 5, 10),
+			('Лимонный сок', 10, 10, 5),
+		],
+	}
 
 	receipt = Receipt(receipt_from_api['title'], receipt_from_api['ingredients_list'])
-	print(receipt.calc_raw_weight())
 	print(receipt.__str__())
-
-	# ingredient = Ingredient("Test", 0.3, 100)
-	
-	# print(ingredient.title)
-	# print(ingredient.weight)
-	# print(ingredient.cost)
