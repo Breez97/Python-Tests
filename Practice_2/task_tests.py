@@ -141,6 +141,17 @@ class TestReceiptSurname(unittest.TestCase):
 		self.assertEqual(self.receipt.calc_raw_weight(0), 0)
 		self.assertEqual(self.receipt.calc_weight(0), 0)
 		self.assertEqual(self.receipt.calc_cost(0), 0)
+	
+	def test_str_method(self):
+		expected = 'Блюдо: Штрудель\nИгредиенты:\n' + \
+				'  Мука:\n    Сырой вес: 150\n    Вес: 140\n    Цена: 30\n' + \
+				'  Сахар:\n    Сырой вес: 50\n    Вес: 50\n    Цена: 15\n' + \
+				'  Яблоки:\n    Сырой вес: 300\n    Вес: 280\n    Цена: 120\n' + \
+				'  Масло сливочное:\n    Сырой вес: 100\n    Вес: 90\n    Цена: 80\n' + \
+				'  Корица:\n    Сырой вес: 5\n    Вес: 5\n    Цена: 10\n' + \
+				'  Лимонный сок:\n    Сырой вес: 10\n    Вес: 10\n    Цена: 5'
+		self.assertEqual(str(self.receipt), expected)
+
 
 
 class TestReceiptName(unittest.TestCase):
