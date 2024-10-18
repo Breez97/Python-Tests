@@ -117,16 +117,22 @@ class TestReceiptSurname(unittest.TestCase):
 
 	# Test calculations
 	def test_calc_raw_weight(self):
-		self.assertEqual(self.receipt.calc_raw_weight(), 615)
-		self.assertEqual(self.receipt.calc_raw_weight(2), 1230)
+		with self.subTest():
+			self.assertEqual(self.receipt.calc_raw_weight(), 615)
+		with self.subTest():
+			self.assertEqual(self.receipt.calc_raw_weight(2), 1230)
 
 	def test_calc_weight(self):
-		self.assertEqual(self.receipt.calc_weight(), 575)
-		self.assertEqual(self.receipt.calc_weight(3), 1725)
+		with self.subTest():
+			self.assertEqual(self.receipt.calc_weight(), 575)
+		with self.subTest():
+			self.assertEqual(self.receipt.calc_weight(3), 1725)
 
 	def test_calc_cost(self):
-		self.assertEqual(self.receipt.calc_cost(), 260)
-		self.assertEqual(self.receipt.calc_cost(4), 1040)
+		with self.subTest():
+			self.assertEqual(self.receipt.calc_cost(), 260)
+		with self.subTest():
+			self.assertEqual(self.receipt.calc_cost(4), 1040)
 
 	def test_empty_ingredients_list(self):
 		with self.assertRaises(ValueError):
