@@ -28,10 +28,15 @@
                 <ul>
                     <li>Сырой вес: {{ ingredient.raw_weight }} г</li>
                     <li>Вес: {{ ingredient.weight }} г</li>
-                    <li>Цена: {{ ingredient.cost }} руб</li>
+                    <li>Стоимость: {{ ingredient.cost }} руб</li>
                 </ul>
             </li>
         {% endfor %}
+        <li><b>Итоговая информация по блюду</b></li>
+        <ul>
+            <li>Вес: {{ sum_weight }} г</li>
+            <li>Стоимость: {{ sum_cost }} руб</li>
+        </ul>
     </ul>
 </main>
 

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
+from django.db.models import Sum 
 from .models import Recipe
 
 
@@ -33,6 +34,8 @@ def recipe_detail(request, pk):
 		context={
 			'recipe_id': recipe.id,
 			'title': recipe.title,
-			'ingredients': recipe.ingredients.order_by('title')
+			'ingredients': recipe.ingredients.order_by('title'),
+			'sum_weight': recipe.ingredients.aggregate(total=Sum('weight'))['total'],
+			'sum_cost': recipe.ingredients.aggregate(total=Sum('cost'))['total']
 		}
 	)
