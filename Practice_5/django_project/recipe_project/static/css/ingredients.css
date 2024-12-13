@@ -1,0 +1,240 @@
+.ingredient-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ingredient-item {
+    background-color: #f8f9fa;
+    padding: 15px;
+    width: 700px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.ingredient-item:hover {
+    background-color: #e9ecef;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-edit-igredient, .btn-delete-igredient {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+    border: none;
+}
+
+.btn-edit-igredient {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-edit-igredient:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+.btn-delete-igredient {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.btn-delete-igredient:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.small-btn-edit-igredient, .small-btn-delete-igredient {
+    padding: 8px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.small-btn-edit-igredient {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.small-btn-edit-igredient:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+.ingredients-table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ingredients-table th {
+    background-color: #f8f9fa;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: #495057;
+    border-bottom: 2px solid #ddd;
+}
+
+.ingredients-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    color: #212529;
+    text-align: center;
+}
+
+.ingredient-row:hover {
+    background-color: #f1f3f5;
+}
+
+.ingredient-name {
+    font-weight: 500;
+    text-align: left;
+}
+
+.ingredient-measurement,
+.ingredient-weight,
+.ingredient-cost {
+    text-align: center;
+}
+
+.ingredient-actions {
+    text-align: center;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-ingredient-table-edit {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    background-color: #ffc107;
+    color: #212529;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-right: 10px;
+}
+
+.btn-ingredient-table-edit:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+.btn-ingredient-table-delete {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    background-color: #dc3545;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-ingredient-table-delete:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.btn-add-ingredient {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #28a745;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-add-ingredient:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.ingredient-add-form-container {
+    width: 30%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ingredient-add-form-container input,
+.ingredient-add-form-container select,
+.ingredient-add-form-container textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+}
+
+.ingredient-add-form-container input {
+	width: 97%;
+}
+
+
+.ingredient-add-form-container input:focus,
+.ingredient-add-form-container select:focus,
+.ingredient-add-form-container textarea:focus {
+    border-color: #ffc107;
+    outline: none;
+}
+
+.ingredient-add-btn-add {
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.ingredient-add-btn-add:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.ingredient-add-btn-back {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #007bff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 93%;
+}
+
+.ingredient-add-btn-back:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}

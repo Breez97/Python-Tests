@@ -1,0 +1,49 @@
+{% extends "../base.html" %}
+
+{% block content %}
+<div class="container-add-recipe">
+    <h1 class="header-header-text">Добавление нового рецепта</h1>
+    <form method="post" class="recipe-add-form">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label for="{{ form.title.id_for_label }}">Название рецепта:</label></td>
+                <td><div class="input-title">{{ form.title }}</div></td>
+            </tr>
+            {% if form.title.errors %}
+            <tr>
+                <td colspan="2" class="error">
+                    {% for error in form.title.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            
+            <tr>
+                <td><label>Ингредиенты:</label></td>
+                <td>
+                    {% if user_ingredients %}
+                        {{ form.ingredients }}
+                    {% else %}
+                        <p>У вас пока нет добавленных ингредиентов. <a href="{% url 'recipe_catalog:ingredient_add' %}">Добавить ингредиент</a></p>
+                    {% endif %}
+                </td>
+            </tr>
+            {% if form.ingredients.errors %}
+            <tr>
+                <td colspan="2" class="error">
+                    {% for error in form.ingredients.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+        <input type="hidden" name="author" value="{{ request.user.id }}">
+        <div class="recipe-add-actions">
+            <input type="submit" value="Создать рецепт" class="btn-recipe-add-add">
+        </div>
+    </form>
+</div>
+{% endblock %}

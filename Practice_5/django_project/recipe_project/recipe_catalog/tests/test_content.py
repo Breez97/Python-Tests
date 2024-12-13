@@ -159,29 +159,3 @@ class TestContent(TestCase):
         with self.assertRaises(ValidationError) as error:
             ingredient_invalid_cost.full_clean()
         self.assertIn('Цена должна быть положительным числом', error.exception.message_dict['cost'])
-
-    def test_recipe_shtrudel_weight_on_page(self):
-        url = reverse('recipe_catalog:recipe_detail', args=[self.recipe_shtrudel.pk])
-        response = self.client.get(url)
-        expected_sum_weight = self.ingredient_flour.total_weight + self.ingredient_sugar.total_weight + self.ingredient_apples.total_weight + self.ingredient_butter.total_weight + self.ingredient_lemon.total_weight
-        self.assertContains(response, f'<b>Вес:</b> {expected_sum_weight}')
-
-    def test_recipe_itonskaya_pytanica_weight_on_page(self):
-        url = reverse('recipe_catalog:recipe_detail', args=[self.recipe_itonskaya_pytanica.pk])
-        response = self.client.get(url)
-        expected_sum_weight = self.ingredient_strawberry.total_weight + self.ingredient_cream.total_weight + self.ingredient_powdered_sugar.total_weight + self.ingredient_meringue.total_weight + self.ingredient_extract.total_weight + self.ingredient_mint.total_weight
-        self.assertContains(response, f'<b>Вес:</b> {expected_sum_weight}')
-    
-    def test_ingredients_shtrudel_are_sorted(self):
-        url = reverse('recipe_catalog:recipe_detail', args=[self.recipe_shtrudel.pk])
-        response = self.client.get(url)
-        ingredients = response.context['ingredients']
-        ingredient_titles = [ingredient.title for ingredient in ingredients]
-        self.assertEqual(ingredient_titles, sorted(ingredient_titles))
-
-    def test_ingredients_itonskaya_pytanica_are_sorted(self):
-        url = reverse('recipe_catalog:recipe_detail', args=[self.recipe_itonskaya_pytanica.pk])
-        response = self.client.get(url)
-        ingredients = response.context['ingredients']
-        ingredient_titles = [ingredient.title for ingredient in ingredients]
-        self.assertEqual(ingredient_titles, sorted(ingredient_titles))

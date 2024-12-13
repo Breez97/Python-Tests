@@ -1,37 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="description" content="Описание страницы">
-		<link rel="icon" href="fav.ico" type="image">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-		<title>Наши рецепты</title>
-	</head>
-	<body>
+{% extends '../base.html' %}
 
-	<header class="bg-light py-3">
-		<div class="container d-flex justify-content-between align-items-center">
-			<h2 class="mb-0">Рецепты</h2>
-			<nav>
-				<a href="/" class="btn btn-primary mx-2">Главная</a>
-				<a href="{% url 'recipe_catalog:about' %}" class="btn btn-secondary mx-2">О нас</a>
-			</nav>
-		</div>
-	</header>
+{% block title %}Главная страница{% endblock %}
+{% block description %}Описание главной страницы с рецептами{% endblock %}
+{% block header_title %}Рецепты{% endblock %}
 
-	<main class="container my-5">
-		<h1>Главная страница</h1>
-		<h2>Список рецептов</h2>
-		<ul class="list-group">
-			{% for recipe in recipes %}
-			<li class="list-group-item">
-				<a href="{% url 'recipe_catalog:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
-			</li>
-			{% endfor %}
-		</ul>
-	</main>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	</body>
-</html>
+{% block content %}
+<div class="header-header-text">Главная страница</div>
+<div class="header-text">Список рецептов</div>
+<div class="recipe-list">
+    {% for recipe in recipes %}
+    <div class="recipe-item">
+        <a href="{% url 'recipe_catalog:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
+    </div>
+    {% endfor %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'recipe_catalog:recipe_add' %}" class="add-recipe-btn">Добавить новый рецепт</a>
+    {% endif %}
+</div>
+{% endblock %}

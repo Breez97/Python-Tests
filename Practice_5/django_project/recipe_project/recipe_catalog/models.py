@@ -2,6 +2,9 @@ from django.db import models
 from django.core.validators import MinValueValidator, RegexValidator
 from django.core.exceptions import ValidationError
 from decimal import Decimal
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class MeasurementUnit(models.Model):
@@ -74,6 +77,11 @@ class Ingredient(models.Model):
 		],
 		verbose_name="Цена"
 	)
+	author = models.ForeignKey(
+		User,
+		verbose_name='Автор рецепта',
+		on_delete=models.CASCADE, null=True
+	)
 
 	@property
 	def quantity_in_units(self):
@@ -105,6 +113,11 @@ class Recipe(models.Model):
 		Ingredient,
 		through="RecipeIngredient",
 		verbose_name="Ингредиенты"
+	)
+	author = models.ForeignKey(
+		User,
+		verbose_name='Автор рецепта',
+		on_delete=models.CASCADE, null=True
 	)
 
 
