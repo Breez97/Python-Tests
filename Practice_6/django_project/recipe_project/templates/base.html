@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="description" content="{% block description %}Описание страницы{% endblock %}">
+    <link rel="icon" href="fav.ico" type="image">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/text.css' %}">
+    <link rel="stylesheet" href="{% static 'css/recipes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ingredients.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>{% block title %}Наши рецепты{% endblock %}</title>
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+        <h2>{% block header_title %}Рецепты{% endblock %}</h2>
+        <nav class="nav">
+            {% if user.is_authenticated %}
+                <div class="username">Вы вошли как: {{ user.username }}</div>
+            {% endif %}
+            <a href="/" class="btn">Главная</a>
+            <a href="{% url 'recipe_catalog:about' %}" class="btn">О нас</a>
+            <a href="/" class="btn">Рецепты</a>
+            <a href="{% url 'recipe_catalog:ingredients' %}" class="btn">Ингредиенты</a> 
+            {% if user.is_authenticated %}
+                <a href="{% url 'recipe_catalog:logout' %}" class="btn btn-danger">Выйти</a>
+            {% else %}
+                <a href="{% url 'recipe_catalog:login' %}" class="btn">Вход</a>
+                <a href="{% url 'recipe_catalog:register' %}" class="btn">Регистрация</a>
+            {% endif %}
+        </nav>
+    </div>
+</header>
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

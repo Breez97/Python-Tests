@@ -1,0 +1,47 @@
+{% extends "../base.html" %}
+
+{% block content %}
+<div class="header-header-text">Список ингредиентов</div>
+<table class="ingredients-table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Единица измерения</th>
+            <th>Общий вес (г)</th>
+            <th>Цена (₽)</th>
+            {% if user.is_authenticated %}
+                <th>Действия</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for ingredient in ingredients %}
+        <tr class="ingredient-row">
+            <td class="ingredient-name">{{ ingredient.title }}</td>
+            <td class="ingredient-measurement">{{ ingredient.measurement_unit }}</td>
+            <td class="ingredient-weight">{{ ingredient.total_weight }}</td>
+            <td class="ingredient-cost">{{ ingredient.cost }}</td>
+            {% if user.is_authenticated %}
+                <td class="ingredient-actions">
+                    {% if ingredient.author == user %}
+                        <a href="{% url 'recipe_catalog:ingredient_edit' ingredient.pk %}" class="btn-ingredient-table-edit">Редактировать</a>
+                        <form method="post" action="{% url 'recipe_catalog:ingredient_delete' ingredient.pk %}">
+                            {% csrf_token %}
+                            <input type="submit" value="Удалить" class="btn-ingredient-table-delete">
+                        </form>
+                    {% endif %}
+                </td>
+            {% endif %}
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Нет ингредиентов для отображения.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'recipe_catalog:ingredient_add' %}" class="btn-add-ingredient">Добавить новый ингредиент</a>
+{% endif %}
+{% endblock %}

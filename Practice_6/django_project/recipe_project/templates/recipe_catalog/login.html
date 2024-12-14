@@ -1,0 +1,21 @@
+{% extends "../base.html" %}
+
+{% block content %}
+<form method="post" action="{% url 'recipe_catalog:login' %}" class="login-form">
+    {% csrf_token %}
+    <table class="login-table">
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+    </table>
+    <div class="form-actions">
+        <input type="submit" value="Войти" class="btn-submit">
+        <input type="hidden" name="next" value="{{ next }}">
+    </div>
+</form>
+{% endblock %}

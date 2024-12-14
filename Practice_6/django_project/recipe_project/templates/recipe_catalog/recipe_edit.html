@@ -1,0 +1,45 @@
+{% extends "../base.html" %}
+
+{% block content %}
+<div class="container-add-recipe">
+    <h1 class="header-header-text">Редактирование рецепта</h1>
+    <form method="post" class="recipe-add-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label for="{{ form.title.id_for_label }}">Название рецепта:</label></td>
+                <td><div class="input-title">{{ form.title }}</div></td>
+            </tr>
+            {% if form.title.errors %}
+            <tr>
+                <td colspan="2" class="error">
+                    {% for error in form.title.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            
+            <tr>
+                <td><label for="{{ form.ingredients.id_for_label }}">Ингредиенты:</label></td>
+                <td>
+                    {{ form.ingredients }}
+                </td>
+            </tr>
+            {% if form.ingredients.errors %}
+            <tr>
+                <td colspan="2" class="error">
+                    {% for error in form.ingredients.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+        <input type="hidden" name="author" value="{{ request.user.id }}">
+        <div class="recipe-add-actions">
+            <input type="submit" value="Сохранить изменения" class="btn-recipe-add-add">
+        </div>
+    </form>
+</div>
+{% endblock %}

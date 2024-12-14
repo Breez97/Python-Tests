@@ -1,0 +1,13 @@
+{% extends '../base.html' %}
+
+{% block content %}
+  <div class="ingredient-add-form-container">
+    <h1 class="header-header-text">Редактировать ингредиент</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="ingredient-add-btn-add">Сохранить изменения</button>
+    </form>
+    <a href="{% url 'recipe_catalog:ingredients' %}" class="ingredient-add-btn-back">Вернуться к списку ингредиентов</a>
+  </div>
+{% endblock %}

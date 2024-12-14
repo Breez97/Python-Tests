@@ -1,0 +1,33 @@
+{% extends '../base.html' %}
+
+{% block content %}
+<div class="container-recipe-detail">
+    <div class="header-header-text">{{ title }}</div>
+
+    <div class="ingredient-info">Вес всех ингредиентов: {{ sum_weight }} г</div>
+    <div class="ingredient-info">Общая стоимость: {{ sum_cost }} руб.</div>
+
+    <div class="header-text">Ингредиенты:</div>
+    <div class="ingredient-list">
+        {% for ingredient in ingredients %}
+        <div class="ingredient-item">
+            {{ ingredient.title }} - {{ ingredient.total_weight }} {{ ingredient.measurement_unit }} - {{ ingredient.cost }} руб.
+            {% if is_author %}
+                <a href="{% url 'recipe_catalog:ingredient_edit' ingredient.id %}" class="btn-edit-igredient">Редактировать</a>
+                <form method="post" action="{% url 'recipe_catalog:ingredient_delete' ingredient.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Удалить" class="btn-delete-igredient">
+                </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if is_author %}
+    <div class="recipe-actions">
+        <a href="{% url 'recipe_catalog:recipe_edit' recipe_id %}" class="small-btn-edit-recipe">Редактировать рецепт</a>
+        <a href="{% url 'recipe_catalog:recipe_delete' recipe_id %}" class="small-btn-delete-recipe">Удалить рецепт</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
